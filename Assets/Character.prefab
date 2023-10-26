@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 579821694660586524}
   - component: {fileID: 1795222731}
   - component: {fileID: 1795222741}
+  - component: {fileID: 1426587255454968658}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -35,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 579821694660586535}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.27409032, y: -0.47738084, z: 0}
-  m_LocalScale: {x: 0.46967, y: 0.46967, z: 0.46967}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -106,7 +107,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.30236053, y: -0.33259678}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -117,7 +118,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 3.5801392, y: 1.6651936}
   m_EdgeRadius: 0
 --- !u!50 &579821694660586532
 Rigidbody2D:
@@ -196,7 +197,7 @@ MonoBehaviour:
   jumpHeight: 9
   maxAirJumps: 1
   downwardMovementMultiplier: 3
-  upwardMovementMultiplier: 3
+  upwardMovementMultiplier: 2
 --- !u!114 &579821694660586528
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,5 +254,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2aede5dea29e2ef418f1a424773dcf4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1426587255454968658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579821694660586535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69eeae9168713f74193903597bdb42d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
