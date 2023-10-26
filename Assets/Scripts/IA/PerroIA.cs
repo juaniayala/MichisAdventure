@@ -73,11 +73,13 @@ public class PerroIA : MonoBehaviour
         // Implementa la lógica de patrulla aquí
         // Puedes cambiar a la siguiente posición de patrulla después de un tiempo o al alcanzar una posición específica, por ejemplo
         // Si llega al final de las posiciones de patrulla, vuelve al principio
-        transform.position = Vector3.MoveTowards(transform.position, patrullarPositions[currentPatrolIndex].position, velocidad * Time.deltaTime);
+        Vector3 obj = new Vector3(patrullarPositions[currentPatrolIndex].position.x, transform.position.y, patrullarPositions[currentPatrolIndex].position.z);
+        transform.position = Vector3.MoveTowards(transform.position, obj, velocidad * Time.deltaTime);
         //Debug.Log("Moviendo a" + patrullarPositions[currentPatrolIndex]);
         if (Vector3.Distance(transform.position, player.position) < distanciaDeDeteccion)
         {
             CambiarAPerseguir();
+            Debug.Log("persiguiendo");
             return;
         }
 
@@ -93,7 +95,9 @@ public class PerroIA : MonoBehaviour
 
         if (distanciaAlJugador > distanciaDeDeteccion)
         {
+            rb.velocity = new Vector2(0F, 0F);
             currentState = State.Patrullar;
+            
             // Puedes reiniciar algunos valores relacionados con la persecución aquí si es necesario
             return; // Sale del método Perseguir si cambia al estado de patrulla
         }
@@ -103,6 +107,7 @@ public class PerroIA : MonoBehaviour
         if (rb.velocity.magnitude < velocidadMaximaPerseguir) // Verifica si la velocidad actual es menor que la velocidad máxima permitida
         {
             rb.AddForce(direction * fuerza, ForceMode2D.Force);
+            Debug.Log("moviendo rb");
         }
     }
 
