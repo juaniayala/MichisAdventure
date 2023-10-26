@@ -10,14 +10,16 @@ public class Move : MonoBehaviour
     [SerializeField, Range(0f, 100f)] private float maxAirAceleration = 20f;
 
     private Vector2 direction;
-    private Vector2 desiredVelocity;
-    private Vector2 velocity;
+    [SerializeField] private Vector2 desiredVelocity;
+    public Vector2 velocity;
     private Rigidbody2D body;
     private Ground ground;
 
     private float maxSpeedChange;
     private float acceleration;
     private bool onGround;
+
+    private bool facingRight = true;
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,34 @@ public class Move : MonoBehaviour
     {
         direction.x = input.RetrieveMoveInput();
         desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max(maxSpeed - ground.GetFriction(), 0f);
+
+        rotateObject();
+    }
+
+    void rotateObject()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (!facingRight)
+            {
+                Flip();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (facingRight)
+            {
+                Flip();
+            }
+        }
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 
     private void FixedUpdate()

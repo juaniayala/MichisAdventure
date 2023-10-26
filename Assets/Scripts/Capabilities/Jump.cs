@@ -36,7 +36,7 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        desiredJump = input.RetrieveJumpInput();
+        desiredJump |= input.RetrieveJumpInput();
     }
 
     private void FixedUpdate()

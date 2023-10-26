@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ground : MonoBehaviour 
 {
     
-    private bool onGround;
+    public bool onGround;
     private float friction;
 
     private void OnCollisionEnter2D(Collision2D collision)
