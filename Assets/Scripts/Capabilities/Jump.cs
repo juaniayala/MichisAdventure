@@ -11,7 +11,6 @@ public class Jump : MonoBehaviour
     [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 3f;
     [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 3f;
     [SerializeField, Range(0f, 1f)] private float coyoteTime = 0.2f;
-    [SerializeField, Range(0f, 1f)] private float coyoteTimeWall = 0.2f;
 
     private Rigidbody2D body;
     private Ground ground;
@@ -27,7 +26,6 @@ public class Jump : MonoBehaviour
 
    
     private float coyoteTimeCounter;
-    private float coyoteTimeWallCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -42,21 +40,13 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (onGround)
+        if (onGround || onWall)
         {
             coyoteTimeCounter = coyoteTime;
         }
         else
         {
             coyoteTimeCounter -= Time.deltaTime;
-        }
-        if (onWall)
-        {
-            coyoteTimeWallCounter = coyoteTimeWall;
-        }
-        else
-        {
-            coyoteTimeWallCounter -= Time.deltaTime;
         }
 
         desiredJump |= input.RetrieveJumpInput();
@@ -77,7 +67,7 @@ public class Jump : MonoBehaviour
         {
             desiredJump = false;
             JumpAction();
-            
+            coyoteTimeCounter = 0f;
         }
 
         if(body.velocity.y > 0)
@@ -98,7 +88,7 @@ public class Jump : MonoBehaviour
 
     private void JumpAction()
     {
-        if((jumpPhase < maxAirJumps) && coyoteTimeWallCounter > 0f || coyoteTimeCounter > 0)
+        if((jumpPhase < maxAirJumps) && coyoteTimeCounter > 0f || onGround)
         {
             jumpPhase += 1;
             float jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
@@ -108,8 +98,6 @@ public class Jump : MonoBehaviour
             }
             velocity.y += jumpSpeed;
         }
-        coyoteTimeCounter = 0f;
-        coyoteTimeWallCounter = 0f;
-
+        
     }
 }
