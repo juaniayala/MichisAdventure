@@ -7,22 +7,25 @@ public class Jump : MonoBehaviour
 
     [SerializeField] private InputController input = null;
     [SerializeField, Range(0f, 15f)] private float jumpHeight = 3f;
-    [SerializeField, Range(0, 5)] private float maxAirJumps = 0;
+    [SerializeField, Range(0, 5)] private float maxAirJumps = 1;
     [SerializeField, Range(0f, 5f)] private float downwardMovementMultiplier = 3f;
     [SerializeField, Range(0f, 5f)] private float upwardMovementMultiplier = 3f;
     [SerializeField, Range(0f, 1f)] private float coyoteTime = 0.2f;
+    [SerializeField, Range(0f, 1.5f)] private float groundJumpCooldown = 0.5f;
 
     private Rigidbody2D body;
     private Ground ground;
     private Wall wall;
     private Vector2 velocity;
 
-    private int jumpPhase;
+    [SerializeField]private float groundJumpTimer = 0;
+    [SerializeField]private int jumpPhase;
     private float defaultGravityScale;
 
     private bool desiredJump;
     private bool onGround;
     private bool onWall;
+    private bool canGroundJump;
 
    
     private float coyoteTimeCounter;
@@ -49,6 +52,15 @@ public class Jump : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
 
+        if (!canGroundJump)
+        {
+            groundJumpTimer -= Time.deltaTime;
+            if (groundJumpTimer <= 0)
+            {
+                canGroundJump = true;
+            }
+        }
+
         desiredJump |= input.RetrieveJumpInput();
     }
 
@@ -58,7 +70,12 @@ public class Jump : MonoBehaviour
         onWall = wall.GetOnWall();
         velocity = body.velocity;
 
-        if (onGround)
+        if (onGround && canGroundJump)
+        {
+            jumpPhase = 0;
+        }
+
+        if (onWall)
         {
             jumpPhase = 0;
         }
@@ -88,8 +105,9 @@ public class Jump : MonoBehaviour
 
     private void JumpAction()
     {
-        if((jumpPhase < maxAirJumps) && coyoteTimeCounter > 0f || onGround)
+        if(canJump())
         {
+            jumpCooldown();
             jumpPhase += 1;
             float jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * jumpHeight);
             if(velocity.y > 0f)
@@ -97,7 +115,28 @@ public class Jump : MonoBehaviour
                 jumpSpeed = Mathf.Max(jumpSpeed - velocity.y, 0f);
             }
             velocity.y += jumpSpeed;
+        }    
+    }
+
+    bool canJump()
+    {
+        if (onGround)
+        {
+            return canGroundJump;
         }
-        
+        else if (onWall)
+        {
+            return (jumpPhase < maxAirJumps) && coyoteTimeCounter > 0f;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void jumpCooldown()
+    {
+        groundJumpTimer = groundJumpCooldown;
+        canGroundJump = false;
     }
 }
