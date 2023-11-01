@@ -5,8 +5,10 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     [SerializeField] private InputController input = null;
-    [SerializeField, Range(0f, 100f)] private float maxSpeed = 4f;
-    [SerializeField, Range(0f, 100f)] private float maxAceleration = 35f;
+    [SerializeField, Range(0f, 100f)] private float maxSpeed = 10f;
+    [SerializeField, Range(0f, 100f)] private float maxAceleration = 10f;
+    [SerializeField, Range(0f, 100f)] private float maxSpeedRunning = 15;
+    [SerializeField, Range(0f, 100f)] private float maxAcelerationRunning = 13;
     [SerializeField, Range(0f, 100f)] private float maxAirAceleration = 20f;
 
     private Vector2 direction;
@@ -14,10 +16,12 @@ public class Move : MonoBehaviour
     public Vector2 velocity;
     private Rigidbody2D body;
     private Ground ground;
+    private Run running;
 
     private float maxSpeedChange;
     private float acceleration;
     private bool onGround;
+    [SerializeField] private bool canMove = true;
 
     private bool facingRight = true;
 
@@ -26,15 +30,47 @@ public class Move : MonoBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         ground = GetComponent<Ground>();
+        running = GetComponent<Run>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        direction.x = input.RetrieveMoveInput();
-        desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max(maxSpeed - ground.GetFriction(), 0f);
+        if (canMove)
+        {
+            direction.x = input.RetrieveMoveInput();
+            if (running.getIsRunning())
+            {
+                desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max(maxSpeedRunning - ground.GetFriction(), 0f);
+            }
+            else
+            {
+                desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max(maxSpeed - ground.GetFriction(), 0f);
+            }
+            rotateObject();
+        }      
+    }
 
-        rotateObject();
+    private void FixedUpdate()
+    {
+        if (canMove)
+        {
+            onGround = ground.GetOnGround();
+            velocity = body.velocity;
+            if (running.getIsRunning())
+            {
+                acceleration = onGround ? maxAcelerationRunning : maxAirAceleration;
+            }
+            else
+            {
+                acceleration = onGround ? maxAceleration : maxAirAceleration;
+            }
+
+            maxSpeedChange = acceleration * Time.deltaTime;
+            velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
+
+            body.velocity = velocity;
+        }      
     }
 
     void rotateObject()
@@ -63,15 +99,19 @@ public class Move : MonoBehaviour
         transform.localScale = theScale;
     }
 
-    private void FixedUpdate()
+    public void stopMoving()
     {
-        onGround = ground.GetOnGround();
-        velocity = body.velocity;
+        canMove = false;
+        body.velocity = new Vector2(0, 0);
+    }
 
-        acceleration = onGround ? maxAceleration : maxAirAceleration;
-        maxSpeedChange = acceleration * Time.deltaTime;
-        velocity.x = Mathf.MoveTowards(velocity.x, desiredVelocity.x, maxSpeedChange);
+    public void continueMoving()
+    {
+        canMove = true;
+    }
 
-        body.velocity = velocity;
+    public bool getMove()
+    {
+        return canMove;
     }
 }

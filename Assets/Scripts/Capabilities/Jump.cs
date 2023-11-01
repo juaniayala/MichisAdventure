@@ -28,7 +28,7 @@ public class Jump : MonoBehaviour
     private bool canGroundJump;
 
    
-    private float coyoteTimeCounter;
+    [SerializeField]private float coyoteTimeCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -43,7 +43,7 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (onGround || onWall)
+        if (onWall)
         {
             coyoteTimeCounter = coyoteTime;
         }
@@ -71,11 +71,6 @@ public class Jump : MonoBehaviour
         velocity = body.velocity;
 
         if (onGround && canGroundJump)
-        {
-            jumpPhase = 0;
-        }
-
-        if (onWall)
         {
             jumpPhase = 0;
         }
@@ -126,11 +121,11 @@ public class Jump : MonoBehaviour
         }
         else if (onWall)
         {
-            return (jumpPhase < maxAirJumps) && coyoteTimeCounter > 0f;
+            return (jumpPhase <= maxAirJumps) && coyoteTimeCounter > 0f;
         }
         else
         {
-            return false;
+            return (jumpPhase <= maxAirJumps) && coyoteTimeCounter > 0f;
         }
     }
 

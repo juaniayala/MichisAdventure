@@ -13,37 +13,43 @@ public class cameraZoomOut : MonoBehaviour
     [SerializeField] bool isTransitioning = false;
     [SerializeField] float timer = 0f;
 
+    private Move chMove;
+
     float targetSize;
     // Start is called before the first frame update
     void Start()
     {
         cineCam = GetComponent<CinemachineVirtualCamera>();
+        chMove = GameObject.Find("Character").GetComponent<Move>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(zoomOutKey))
+        if (chMove.getMove())
         {
-            startTransition(13);
-        }
-        else if (Input.GetKeyUp(zoomOutKey))
-        {
-            startTransition(9);
-        }
-
-        if (isTransitioning)
-        {
-            timer += Time.deltaTime;
-            float t = Mathf.Clamp01(timer / transitionDuration);
-            zoomTransitioning(targetSize, t);
-            if (t >= 1.0f)
+            if (Input.GetKeyDown(zoomOutKey))
             {
-                isTransitioning = false;
+                startTransition(13);
+            }
+            else if (Input.GetKeyUp(zoomOutKey))
+            {
+                startTransition(9);
+            }
+
+            if (isTransitioning)
+            {
+                timer += Time.deltaTime;
+                float t = Mathf.Clamp01(timer / transitionDuration);
+                zoomTransitioning(targetSize, t);
+                if (t >= 1.0f)
+                {
+                    isTransitioning = false;
+                }
             }
         }
     }
-
+        
     void startTransition(float target)
     {
         targetSize = target;
