@@ -15,6 +15,10 @@ public class cameraZoomOut : MonoBehaviour
 
     private Move chMove;
 
+    public float zoomOutValue = 13;
+
+    public float zoomInValue = 9;
+
     float targetSize;
     // Start is called before the first frame update
     void Start()
@@ -30,11 +34,11 @@ public class cameraZoomOut : MonoBehaviour
         {
             if (Input.GetKeyDown(zoomOutKey))
             {
-                startTransition(13);
+                startTransition(zoomOutValue);
             }
             else if (Input.GetKeyUp(zoomOutKey))
             {
-                startTransition(9);
+                startTransition(zoomInValue);
             }
 
             if (isTransitioning)

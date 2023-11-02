@@ -33,11 +33,14 @@ public class PerroAI : MonoBehaviour
     // Variable de tiempo de alerta e investigación
     public float alertTime = 5f;
     public float chasingTime = 10f;
+    public float sleepingTime = 15f;
     [SerializeField]private float timer;
 
     private bool sleeping = false;
     public Animator anim;
     private bool facingRight = true;
+
+    public GameObject radio;
 
     void Start()
     {
@@ -99,12 +102,13 @@ public class PerroAI : MonoBehaviour
 
     void Sleep()
     {
-        timer = 15f;
-        timer -= Time.deltaTime;
-        if (timer <= 0)
+        timer += Time.deltaTime;
+        if (timer >= sleepingTime)
         {
             sleeping = false;
             currentState = State.Patrullando;
+            radio.GetComponent<playSleepMusic>().pauseMusic();
+            timer = 0;
         }
     }
 

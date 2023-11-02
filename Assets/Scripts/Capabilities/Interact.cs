@@ -21,7 +21,7 @@ public class Interact : MonoBehaviour
             canInteract = false;
         }
         
-        if (canInteract)
+        if (canInteract && collisionInteract.GetComponent<Interactable>().getCanInteract())
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
@@ -30,7 +30,7 @@ public class Interact : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collisionTemp)
+    private void OnTriggerEnter2D(Collider2D collisionTemp)
     {
         if (collisionTemp.gameObject.CompareTag("Interactable"))
         {
@@ -39,7 +39,7 @@ public class Interact : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collisionTemp)
+    private void OnTriggerExit2D(Collider2D collisionTemp)
     {
         if (collisionTemp.gameObject.CompareTag("Interactable"))
         {
