@@ -22,4 +22,9 @@ public class Animation : MonoBehaviour
         anim.SetFloat("Velocity", move.velocity.x);
         anim.SetBool("Grounded", ground.onGround);
     }
+
+    public void winAnim()
+    {
+        anim.SetTrigger("Win");
+    }
 }
