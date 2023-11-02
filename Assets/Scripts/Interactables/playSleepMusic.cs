@@ -7,6 +7,7 @@ public class playSleepMusic : Interactable
     [SerializeField]private PerroAI perro;
 
     private AudioSource cancion;
+    public AudioSource musicaFondo;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,7 @@ public class playSleepMusic : Interactable
 
     override public void interact()
     {
+        musicaFondo.Pause();
         canInteract = false;
         cancion.Play();
         Debug.Log("Interactuando");
@@ -30,6 +32,7 @@ public class playSleepMusic : Interactable
 
     public void pauseMusic()
     {
+        musicaFondo.Play();
         cancion.Pause();
         canInteract = true;
     }

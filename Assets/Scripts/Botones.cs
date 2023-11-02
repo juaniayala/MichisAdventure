@@ -27,6 +27,11 @@ public class Botones : MonoBehaviour
         SceneManager.LoadScene("Tutorial");
     }
 
+    public void menu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
     public void salir()
     {
         Application.Quit();
