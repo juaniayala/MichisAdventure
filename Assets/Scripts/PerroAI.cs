@@ -8,17 +8,19 @@ public enum State
     Persiguiendo,
     Investigando,
     Durmiendo,
-    Alerta
+    Alerta,
+    YendoADormir
 }
 
 public class PerroAI : MonoBehaviour
 {
     public State currentState;
-    private Vector2 investigationTarget;
+    public Vector2 investigationTarget;
     private Rigidbody2D rb;
 
     // Variables para el patrullaje
     public Transform[] patrolPoints;
+    public Transform sleepingPoint;
     private int currentPatrolIndex;
     public float patrolSpeed;
     public float chaseSpeed;
@@ -30,7 +32,8 @@ public class PerroAI : MonoBehaviour
 
     // Variable de tiempo de alerta e investigación
     public float alertTime = 5f;
-    private float timer;
+    public float chasingTime = 10f;
+    [SerializeField]private float timer;
 
     private bool sleeping = false;
     public Animator anim;
@@ -54,14 +57,18 @@ public class PerroAI : MonoBehaviour
                 CheckForPlayer();
                 break;
             case State.Persiguiendo:
-                Chase();
                 CheckForPlayer();
+                Chase();
                 break;
             case State.Investigando:
                 Investigate();
                 break;
             case State.Durmiendo:
-                // Lógica de dormir
+                Sleep();
+                break;
+            case State.YendoADormir:
+                GoingToSleep();
+                CheckForPlayer();
                 break;
             case State.Alerta:
                 Alert();
@@ -92,10 +99,11 @@ public class PerroAI : MonoBehaviour
 
     void Sleep()
     {
-        timer = 30f;
+        timer = 15f;
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
+            sleeping = false;
             currentState = State.Patrullando;
         }
     }
@@ -123,6 +131,13 @@ public class PerroAI : MonoBehaviour
         {
             Vector2 chaseDirection = (player.position - transform.position).normalized;
             rb.velocity = chaseDirection * chaseSpeed;
+            timer += Time.deltaTime;
+            if (timer >= chasingTime || rb.velocity.x == 0)
+            {
+                currentState = State.Alerta;
+                timer = 0f;
+                rb.velocity = new Vector2(0, 0);
+            }
         }
     }
 
@@ -143,12 +158,27 @@ public class PerroAI : MonoBehaviour
     {
         // Lógica de activación del trigger del animator
         anim.SetTrigger("Alert");
-        timer += Time.deltaTime;
+        /*timer += Time.deltaTime;
         if (timer >= alertTime)
-        {
-            timer = 0f;
+        {            
             currentState = State.Investigando;
+            timer = 0f;
             anim.SetTrigger("Investigate");        
+        }*/
+    }
+
+    void GoingToSleep()
+    {
+        anim.SetTrigger("Patrolling");
+        Vector2 target = sleepingPoint.position;
+        Vector2 patrolDirection = (target - (Vector2)transform.position).normalized;
+        rb.velocity = patrolDirection * patrolSpeed;
+
+        if (Vector2.Distance(transform.position, target) < 1f)
+        {
+            currentState = State.Durmiendo;
+            rb.velocity = new Vector2(0, 0);
+            sleeping = true;
         }
     }
 
@@ -159,5 +189,15 @@ public class PerroAI : MonoBehaviour
             currentState = State.Persiguiendo;
             anim.SetTrigger("Chasing");
         }
+    }
+
+    public void GoToSleep()
+    {
+        currentState = State.YendoADormir;
+    }
+
+    public bool getSleeping()
+    {
+        return sleeping;
     }
 }

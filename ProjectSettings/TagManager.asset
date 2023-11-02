@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Comida
   - Perro
+  - Interactable
   layers:
   - Default
   - TransparentFX

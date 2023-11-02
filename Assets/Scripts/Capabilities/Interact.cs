@@ -1,0 +1,50 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Interact : MonoBehaviour
+{
+    bool canInteract = false;
+
+    GameObject collisionInteract = null;
+    // Start is called before the first frame update
+    void Start()
+    {
+        canInteract = false;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (collisionInteract == null)
+        {
+            canInteract = false;
+        }
+        
+        if (canInteract)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                collisionInteract.GetComponent<Interactable>().interact();
+            }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collisionTemp)
+    {
+        if (collisionTemp.gameObject.CompareTag("Interactable"))
+        {
+            collisionInteract = collisionTemp.gameObject;
+            canInteract = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collisionTemp)
+    {
+        if (collisionTemp.gameObject.CompareTag("Interactable"))
+        {
+            canInteract = false;
+            collisionInteract = null;
+        }       
+    }
+}
