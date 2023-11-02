@@ -3508,9 +3508,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1554039052}
     - target: {fileID: 1972465563, guid: 4df9458413caaa74988d03f2ed63944d, type: 3}
+      propertyPath: chaseSpeed
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1972465563, guid: 4df9458413caaa74988d03f2ed63944d, type: 3}
+      propertyPath: patrolSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1972465563, guid: 4df9458413caaa74988d03f2ed63944d, type: 3}
+      propertyPath: visionRange
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1972465563, guid: 4df9458413caaa74988d03f2ed63944d, type: 3}
       propertyPath: sleepingPoint
       value: 
       objectReference: {fileID: 1302576837}
+    - target: {fileID: 1972465563, guid: 4df9458413caaa74988d03f2ed63944d, type: 3}
+      propertyPath: chaseThreshold
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 1972465563, guid: 4df9458413caaa74988d03f2ed63944d, type: 3}
       propertyPath: patrolPoints.Array.data[0]
       value: 
@@ -7292,6 +7308,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 1867497721072316924, guid: c724bb3842cbf9a479d708d32a52b8f8, type: 3}
+      propertyPath: orthographic size
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1867497721072316927, guid: c724bb3842cbf9a479d708d32a52b8f8, type: 3}
       propertyPath: m_RootOrder
       value: 45
@@ -7349,9 +7369,21 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1550729647}
+    - target: {fileID: 5719280068234280172, guid: 4393a07e5b05ced428502dce70679f3d, type: 3}
+      propertyPath: m_Lens.OrthographicSize
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 5719280068234280173, guid: 4393a07e5b05ced428502dce70679f3d, type: 3}
       propertyPath: m_Name
       value: CM vcam1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719280068234280174, guid: 4393a07e5b05ced428502dce70679f3d, type: 3}
+      propertyPath: zoomInValue
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5719280068234280174, guid: 4393a07e5b05ced428502dce70679f3d, type: 3}
+      propertyPath: zoomOutValue
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5719280068234280175, guid: 4393a07e5b05ced428502dce70679f3d, type: 3}
       propertyPath: m_RootOrder

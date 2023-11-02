@@ -60,7 +60,7 @@ public class PerroAI : MonoBehaviour
                 CheckForPlayer();
                 break;
             case State.Persiguiendo:
-                CheckForPlayer();
+                //CheckForPlayer();
                 Chase();
                 break;
             case State.Investigando:
@@ -107,6 +107,7 @@ public class PerroAI : MonoBehaviour
         {
             sleeping = false;
             currentState = State.Patrullando;
+            anim.SetTrigger("Patrolling");
             radio.GetComponent<playSleepMusic>().pauseMusic();
             timer = 0;
         }
@@ -129,7 +130,7 @@ public class PerroAI : MonoBehaviour
         if (Vector2.Distance(transform.position, player.position) > chaseThreshold)
         {
             currentState = State.Patrullando;
-            anim.SetTrigger("Patroling");
+            anim.SetTrigger("Patrolling");
         }
         else
         {
@@ -183,6 +184,7 @@ public class PerroAI : MonoBehaviour
             currentState = State.Durmiendo;
             rb.velocity = new Vector2(0, 0);
             sleeping = true;
+            anim.SetTrigger("Sleeping");
         }
     }
 
