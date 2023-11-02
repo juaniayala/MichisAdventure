@@ -24,4 +24,9 @@ public class WinAndLose : MonoBehaviour
             SceneManager.LoadScene("Derrota");
         }
     }
+
+    public int getFood()
+    {
+        return comidaAgarrada;
+    }
 }
