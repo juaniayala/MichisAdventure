@@ -6,10 +6,13 @@ public class FallPlatform : MonoBehaviour
 {
     PlatformEffector2D platformEffector2;
     [SerializeField]bool puedeRotar = false;
+
+    private Move chMove;
     // Start is called before the first frame update
     void Start()
     {
         platformEffector2 = GetComponent<PlatformEffector2D>();
+        chMove = GameObject.Find("Character").GetComponent<Move>();
     }
 
     // Update is called once per frame
@@ -17,7 +20,7 @@ public class FallPlatform : MonoBehaviour
     {
         if (puedeRotar)
         {
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S) && chMove.getMove())
             {
                 platformEffector2.rotationalOffset = 180;
             }
@@ -29,13 +32,18 @@ public class FallPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            puedeRotar = true;
+            Invoke("activarRotacion", 1f);
         }       
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         StartCoroutine("reiniciarRotacion");
+    }
+
+    void activarRotacion()
+    {
+        puedeRotar = true;
     }
 
     IEnumerator reiniciarRotacion()
