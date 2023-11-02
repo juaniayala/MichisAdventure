@@ -9,6 +9,8 @@ public class levelManager : MonoBehaviour
 
     public TMP_Text counterText;
 
+    public TMP_Text searchText, escapeText;
+
     int foodCounter = 0;
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,12 @@ public class levelManager : MonoBehaviour
     {
         foodCounter = wlCheck.getFood();
         counterText.text = foodCounter.ToString();
+
+        if (canEscape())
+        {
+            searchText.gameObject.SetActive(false);
+            escapeText.gameObject.SetActive(true);
+        }
     }
 
     public bool canEscape()

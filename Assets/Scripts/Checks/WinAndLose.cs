@@ -7,6 +7,8 @@ public class WinAndLose : MonoBehaviour
 {
     [SerializeField]int comidaAgarrada = 0;
 
+    public GameObject ventana;
+
     private void Start()
     {
         comidaAgarrada = 0;
@@ -18,6 +20,7 @@ public class WinAndLose : MonoBehaviour
         {
             collision.gameObject.SetActive(false);
             comidaAgarrada++;
+            ventana.SetActive(true);
         }
         else if (collision.gameObject.CompareTag("Perro"))
         {

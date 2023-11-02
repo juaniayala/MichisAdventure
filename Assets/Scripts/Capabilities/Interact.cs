@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Interact : MonoBehaviour
 {
-    bool canInteract = false;
+    [SerializeField]bool canInteract = false;
 
     GameObject collisionInteract = null;
     // Start is called before the first frame update
