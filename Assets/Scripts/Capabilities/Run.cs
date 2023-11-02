@@ -5,6 +5,7 @@ using UnityEngine;
 public class Run : MonoBehaviour
 {
     private bool isRunning = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,7 @@ public class Run : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            isRunning = true;
+            isRunning = true;           
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift))

@@ -5,31 +5,40 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-
-    public float timeValue = 90;
+    public float startTimeValue = 90;
+    [SerializeField] float timeValue;
     private TMP_Text timeText;
+    [SerializeField] private bool finishedCountdown;
 
     // Start is called before the first frame update
     void Start()
     {
         timeText = GetComponent<TMP_Text>();
+        timeValue = startTimeValue;
+        finishedCountdown = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timeValue > 0)
+        if (!finishedCountdown)
         {
-            timeValue -= Time.deltaTime;
-        }
-        else
-        {
-            timeValue = 0;
-            timeValue += 20;
-        }
+            if (timeValue > 0)
+            {
+                timeValue -= Time.deltaTime;
+            }
+            else
+            {
+                terminarCuenta();
+            }
 
-        DisplayTime(timeValue);
+            DisplayTime(timeValue);
+        }
+    }
 
+    void terminarCuenta()
+    {
+        finishedCountdown = true;
     }
 
     void DisplayTime(float timeToDisplay)
@@ -43,6 +52,11 @@ public class Timer : MonoBehaviour
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
         timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    public bool getFinished()
+    {
+        return finishedCountdown;
     }
 
 }

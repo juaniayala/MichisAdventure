@@ -25,6 +25,8 @@ public class Move : MonoBehaviour
 
     private bool facingRight = true;
 
+    public ParticleSystem dust;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -48,6 +50,7 @@ public class Move : MonoBehaviour
                 desiredVelocity = new Vector2(direction.x, 0f) * Mathf.Max(maxSpeed - ground.GetFriction(), 0f);
             }
             rotateObject();
+            movingDust();
         }      
     }
 
@@ -113,5 +116,13 @@ public class Move : MonoBehaviour
     public bool getMove()
     {
         return canMove;
+    }
+
+    void movingDust()
+    {
+        if (onGround && body.velocity.x != 0)
+        {
+            dust.Play();
+        }
     }
 }
