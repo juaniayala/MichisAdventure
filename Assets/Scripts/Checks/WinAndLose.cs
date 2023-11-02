@@ -9,6 +9,8 @@ public class WinAndLose : MonoBehaviour
 
     public GameObject ventana;
 
+    public Timer timer;
+
     private void Start()
     {
         comidaAgarrada = 0;
@@ -24,8 +26,21 @@ public class WinAndLose : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Perro"))
         {
-            SceneManager.LoadScene("Derrota");
+            perder();
         }
+    }
+
+    private void Update()
+    {
+        if (timer.getFinished())
+        {
+            perder();
+        }
+    }
+
+    public void perder()
+    {
+        SceneManager.LoadScene("Derrota");
     }
 
     public int getFood()

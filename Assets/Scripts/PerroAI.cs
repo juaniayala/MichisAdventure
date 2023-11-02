@@ -41,7 +41,9 @@ public class PerroAI : MonoBehaviour
     private bool facingRight = true;
 
     public GameObject radio;
-    public AudioSource ronquidos;
+    public AudioSource ronquidos, dogRage, ladridos;
+    public WinAndLose wLose;
+    public Timer Reloj;
 
     void Start()
     {
@@ -140,8 +142,11 @@ public class PerroAI : MonoBehaviour
             timer += Time.deltaTime;
             if (timer >= chasingTime || rb.velocity.x == 0)
             {
+                dogRage.Stop();
                 currentState = State.Alerta;
+                ladridos.Play();
                 timer = 0f;
+                Reloj.changeTimeValue();
                 rb.velocity = new Vector2(0, 0);
             }
         }
@@ -164,13 +169,15 @@ public class PerroAI : MonoBehaviour
     {
         // Lógica de activación del trigger del animator
         anim.SetTrigger("Alert");
-        /*timer += Time.deltaTime;
+        timer += Time.deltaTime;
         if (timer >= alertTime)
-        {            
-            currentState = State.Investigando;
+        {
+            ladridos.Stop();
+            //currentState = State.Investigando;
             timer = 0f;
-            anim.SetTrigger("Investigate");        
-        }*/
+            wLose.perder();
+            //anim.SetTrigger("Investigate");        
+        }
     }
 
     void GoingToSleep()
@@ -196,11 +203,13 @@ public class PerroAI : MonoBehaviour
         {
             currentState = State.Persiguiendo;
             anim.SetTrigger("Chasing");
+            dogRage.Play();
         }
     }
 
     public void GoToSleep()
     {
+        dogRage.Stop();
         currentState = State.YendoADormir;
     }
 

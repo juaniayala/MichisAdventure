@@ -59,4 +59,8 @@ public class Timer : MonoBehaviour
         return finishedCountdown;
     }
 
+    public void changeTimeValue()
+    {
+        timeValue = 5;
+    }
 }
