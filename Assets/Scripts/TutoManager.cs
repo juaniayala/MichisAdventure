@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TutoManager : MonoBehaviour
 {
@@ -51,5 +52,10 @@ public class TutoManager : MonoBehaviour
     void actualizarContador()
     {
         contadorCheckpoints.text = checkpointsCleared.ToString();
+    }
+
+    public void irAlMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }

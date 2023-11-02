@@ -32,7 +32,7 @@ public class FallPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Invoke("activarRotacion", 0.1f);
+            activarRotacion();
         }       
     }
 
