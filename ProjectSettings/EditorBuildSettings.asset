@@ -6,12 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: ea2b175d156752740b21633389f439c3
+  - enabled: 1
     path: Assets/Scenes/MovimientoGato.unity
     guid: 47b3b9f1aa702554aa01e80e083ea65d
   - enabled: 1
     path: Assets/Scenes/Victoria.unity
-    guid: 5a89eb3dddd8032468eaabd1ea5a9416
+    guid: 00e7e3e34cb7e2e4d80967af9b0e3932
   - enabled: 1
     path: Assets/Scenes/Derrota.unity
     guid: 0a13b6726a53f7d49a8d2dd2e8901ed3
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 461d62ab315b58940887cd419cc4bf64
   m_configObjects: {}

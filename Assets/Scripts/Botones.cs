@@ -22,6 +22,11 @@ public class Botones : MonoBehaviour
         SceneManager.LoadScene("MovimientoGato");
     }
 
+    public void tutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
+
     public void salir()
     {
         Application.Quit();
