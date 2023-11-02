@@ -41,6 +41,7 @@ public class PerroAI : MonoBehaviour
     private bool facingRight = true;
 
     public GameObject radio;
+    public AudioSource ronquidos;
 
     void Start()
     {
@@ -71,7 +72,6 @@ public class PerroAI : MonoBehaviour
                 break;
             case State.YendoADormir:
                 GoingToSleep();
-                CheckForPlayer();
                 break;
             case State.Alerta:
                 Alert();
@@ -107,6 +107,7 @@ public class PerroAI : MonoBehaviour
         {
             sleeping = false;
             currentState = State.Patrullando;
+            ronquidos.Stop();
             anim.SetTrigger("Patrolling");
             radio.GetComponent<playSleepMusic>().pauseMusic();
             timer = 0;
@@ -185,6 +186,7 @@ public class PerroAI : MonoBehaviour
             rb.velocity = new Vector2(0, 0);
             sleeping = true;
             anim.SetTrigger("Sleeping");
+            ronquidos.Play();
         }
     }
 

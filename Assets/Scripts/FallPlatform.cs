@@ -32,7 +32,7 @@ public class FallPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Invoke("activarRotacion", 1f);
+            Invoke("activarRotacion", 0.1f);
         }       
     }
 
@@ -48,7 +48,7 @@ public class FallPlatform : MonoBehaviour
 
     IEnumerator reiniciarRotacion()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.3f);
         puedeRotar = false;
         platformEffector2.rotationalOffset = 0;
     }
