@@ -5,7 +5,7 @@ using UnityEngine;
 public class FallPlatform : MonoBehaviour
 {
     PlatformEffector2D platformEffector2;
-    [SerializeField]bool puedeRotar = false;
+    [SerializeReference]bool puedeRotar = false;
 
     private Move chMove;
     // Start is called before the first frame update
@@ -28,28 +28,19 @@ public class FallPlatform : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            activarRotacion();
-        }       
-    }
-
     private void OnCollisionExit2D(Collision2D collision)
     {
-        StartCoroutine("reiniciarRotacion");
+        reiniciarRotacion();
     }
 
-    void activarRotacion()
+    public void activarRotacion()
     {
+        platformEffector2.rotationalOffset = 0;
         puedeRotar = true;
     }
 
-    IEnumerator reiniciarRotacion()
+    void reiniciarRotacion()
     {
-        yield return new WaitForSeconds(0.3f);
         puedeRotar = false;
-        platformEffector2.rotationalOffset = 0;
     }
 }
