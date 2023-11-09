@@ -172,10 +172,8 @@ public class PerroAI : MonoBehaviour
         if (timer >= alertTime)
         {
             ladridos.Stop();
-            //currentState = State.Investigando;
             timer = 0f;
-            wLose.perder();
-            //anim.SetTrigger("Investigate");        
+            wLose.perder();      
         }
     }
 

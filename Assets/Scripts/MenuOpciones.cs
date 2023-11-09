@@ -6,15 +6,14 @@ using UnityEngine.UI;
 
 public class MenuOpciones : MonoBehaviour
 {
-    
     public AudioMixer audioMixer;
 
-    public Dropdown resolutionDropdown;
+    //public Dropdown resolutionDropdown;
 
-    Resolution[] resolutions;
+    //Resolution[] resolutions;
     private void Start()
     {
-        resolutions = Screen.resolutions;
+        /*resolutions = Screen.resolutions;
 
         resolutionDropdown.ClearOptions();
 
@@ -33,19 +32,30 @@ public class MenuOpciones : MonoBehaviour
 
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
+        resolutionDropdown.RefreshShownValue();*/
     }
 
-    public void SetResolution (int resolutionIndex)
+    /*public void SetResolution (int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-    }
+    }*/
 
-    public void SetVolume(float volume)
+    public void SetVolumeGeneral(float volume)
     {
         audioMixer.SetFloat("Volume", volume);
     }
+
+    public void SetVolumeMusic(float volume)
+    {
+        audioMixer.SetFloat("MusicVolume", volume);
+    }
+
+    public void SetVolumeEffect(float volume)
+    {
+        audioMixer.SetFloat("InterVolume", volume);
+    }
+
 
     public void SetFullscreen (bool isFullscreen)
     {

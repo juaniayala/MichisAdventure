@@ -44,8 +44,12 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
+  - guid: 85211edc4f22c99478f2e695f93feab0
+    name: InterVolume
   - guid: 8cce5c2da7b44714d9ed0344096289f0
     name: Volume
+  - guid: 4251a13247683504b81dee3b4d66aef5
+    name: MusicVolume
   m_AudioMixerGroupViews:
   - guids:
     - e38cce7b8f02cce40b1152166ee85072
