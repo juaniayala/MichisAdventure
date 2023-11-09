@@ -30,6 +30,7 @@ public class Botones : MonoBehaviour
     public void menu()
     {
         SceneManager.LoadScene("Menu");
+        Time.timeScale = 1;
     }
 
     public void salir()

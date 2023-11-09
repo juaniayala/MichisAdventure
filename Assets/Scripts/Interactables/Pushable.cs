@@ -5,7 +5,7 @@ using UnityEngine;
 public class Pushable : Interactable
 {
     public float fuerza = 1;
-    private float countdownMax = 2;
+    private float countdownMax = 10;
     private float countdownVal = 0;
 
     Rigidbody2D rb;

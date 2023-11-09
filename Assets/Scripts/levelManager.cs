@@ -11,11 +11,22 @@ public class levelManager : MonoBehaviour
 
     public TMP_Text searchText, escapeText;
 
+    public GameObject menuOpciones;
+
     int foodCounter = 0;
+
+    public int foodTotal;
+
+    Move gato;
     // Start is called before the first frame update
     void Start()
     {
         foodCounter = 0;
+
+        gato = GameObject.Find("Character").GetComponent<Move>();
+
+        searchText.gameObject.SetActive(true);
+        escapeText.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,10 +40,27 @@ public class levelManager : MonoBehaviour
             searchText.gameObject.SetActive(false);
             escapeText.gameObject.SetActive(true);
         }
+
+        abrirMenuOpciones();
     }
 
     public bool canEscape()
     {
-        return foodCounter > 0;
+        return foodCounter == foodTotal;
+    }
+
+    void abrirMenuOpciones()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && menuOpciones.activeSelf == false && gato.getMove())
+        {
+            menuOpciones.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+
+    public void unpause()
+    {
+        menuOpciones.SetActive(false);
+        Time.timeScale = 1;
     }
 }

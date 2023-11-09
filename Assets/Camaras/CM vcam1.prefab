@@ -88,6 +88,8 @@ MonoBehaviour:
   transitionDuration: 1
   isTransitioning: 0
   timer: 0
+  zoomOutValue: 18
+  zoomInValue: 9.5
 --- !u!1 &5719280069968628897
 GameObject:
   m_ObjectHideFlags: 0

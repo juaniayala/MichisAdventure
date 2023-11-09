@@ -67,6 +67,7 @@ public class PerroAI : MonoBehaviour
                 break;
             case State.Investigando:
                 Investigate();
+                CheckForPlayer();
                 break;
             case State.Durmiendo:
                 Sleep();
@@ -129,10 +130,12 @@ public class PerroAI : MonoBehaviour
 
     void Chase()
     {
-        if (Vector2.Distance(transform.position, player.position) > chaseThreshold)
+        if (Vector2.Distance(transform.position, player.position) > chaseThreshold || player.transform.position.y >= -5)
         {
             currentState = State.Patrullando;
             anim.SetTrigger("Patrolling");
+            dogRage.Stop();
+            timer = 0f;
         }
         else
         {
@@ -143,6 +146,7 @@ public class PerroAI : MonoBehaviour
             {
                 dogRage.Stop();
                 currentState = State.Alerta;
+                anim.SetTrigger("Alert");
                 ladridos.Play();
                 timer = 0f;
                 Reloj.changeTimeValue();
@@ -157,7 +161,7 @@ public class PerroAI : MonoBehaviour
         Vector2 direction = (investigationTarget - (Vector2)transform.position).normalized;
         rb.velocity = direction * patrolSpeed;
 
-        if (Vector2.Distance(transform.position, investigationTarget) < 0.2f)
+        if (Vector2.Distance(transform.position, investigationTarget) < 0.5f)
         {
             currentState = State.Patrullando;
             anim.SetTrigger("Patroling");
@@ -167,7 +171,6 @@ public class PerroAI : MonoBehaviour
     void Alert()
     {
         // Lógica de activación del trigger del animator
-        anim.SetTrigger("Alert");
         timer += Time.deltaTime;
         if (timer >= alertTime)
         {
@@ -194,9 +197,18 @@ public class PerroAI : MonoBehaviour
         }
     }
 
+    public void startInvestigating()
+    {
+        if (currentState == State.Patrullando)
+        {
+            currentState = State.Investigando;
+            anim.SetTrigger("Investigate");
+        }
+    }
+
     void CheckForPlayer()
     {
-        if (Vector2.Distance(transform.position, player.position) < visionRange)
+        if (Vector2.Distance(transform.position, player.position) < visionRange && player.transform.position.y < -5)
         {
             currentState = State.Persiguiendo;
             anim.SetTrigger("Chasing");
@@ -213,5 +225,10 @@ public class PerroAI : MonoBehaviour
     public bool getSleeping()
     {
         return sleeping;
+    }
+
+    public float getAlertTime()
+    {
+        return alertTime;
     }
 }

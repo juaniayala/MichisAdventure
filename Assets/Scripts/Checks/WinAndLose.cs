@@ -11,9 +11,12 @@ public class WinAndLose : MonoBehaviour
 
     public Timer timer;
 
+    PerroAI perro;
+
     private void Start()
     {
         comidaAgarrada = 0;
+        perro = GameObject.Find("Perro").GetComponent<PerroAI>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -26,7 +29,11 @@ public class WinAndLose : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Perro"))
         {
-            perder();
+            if (!perro.getSleeping())
+            {
+                perder();
+            }
+            
         }
     }
 

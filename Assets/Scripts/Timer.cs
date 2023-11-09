@@ -10,9 +10,14 @@ public class Timer : MonoBehaviour
     private TMP_Text timeText;
     [SerializeField] private bool finishedCountdown;
 
+    PerroAI perro;
+
+
+
     // Start is called before the first frame update
     void Start()
     {
+        perro = GameObject.Find("Perro").GetComponent<PerroAI>();
         timeText = GetComponent<TMP_Text>();
         timeValue = startTimeValue;
         finishedCountdown = false;
@@ -61,6 +66,6 @@ public class Timer : MonoBehaviour
 
     public void changeTimeValue()
     {
-        timeValue = 5;
+        timeValue = perro.getAlertTime();
     }
 }
