@@ -63,7 +63,6 @@ public class PerroAI : MonoBehaviour
                 CheckForPlayer();
                 break;
             case State.Persiguiendo:
-                //CheckForPlayer();
                 Chase();
                 break;
             case State.Investigando:
