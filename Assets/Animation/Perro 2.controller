@@ -89,7 +89,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 5063b75890307e247992782ce7284238, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4fbd66cf51a50f847b24f36108a2db3e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -140,7 +140,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e1995a48a31329149a338449b3b64056, type: 2}
+  m_Motion: {fileID: 7400000, guid: 58ba76cd6833b3d4db35e08562b83003, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -202,7 +202,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Perro
+  m_Name: Perro 2
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: Patrolling
@@ -332,7 +332,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f40618aac62b73645ba0336eb64688dd, type: 2}
+  m_Motion: {fileID: 7400000, guid: 3f74ed50e0e041c49a3e257fddfc9afc, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -384,7 +384,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 95032a397a0581041baa00ff294705ba, type: 2}
+  m_Motion: {fileID: 7400000, guid: 7fb24e1e03742dd4f8788a2369544c2f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

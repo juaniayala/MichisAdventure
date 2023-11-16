@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 461d62ab315b58940887cd419cc4bf64
+  - enabled: 1
+    path: Assets/Scenes/DerrotaNivel2.unity
+    guid: 23e842e5502915c4fa29d7e169e47ad9
+  - enabled: 1
+    path: Assets/Scenes/VictoriaNivel2.unity
+    guid: f1802ec0296a10d48ba148c1d5ac86e6
   m_configObjects: {}
