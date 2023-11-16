@@ -22,10 +22,8 @@ public class playSleepMusic : Interactable
     }
 
     override public void interact()
-    {
-        musicaFondo.Pause();
-        canInteract = false;
-        cancion.Play();
+    {       
+        playMusic();
         Debug.Log("Interactuando");
         perro.GoToSleep();
     }
@@ -35,5 +33,12 @@ public class playSleepMusic : Interactable
         musicaFondo.Play();
         cancion.Pause();
         canInteract = true;
+    }
+
+    public void playMusic()
+    {
+        musicaFondo.Pause();
+        cancion.Play();
+        canInteract = false;
     }
 }

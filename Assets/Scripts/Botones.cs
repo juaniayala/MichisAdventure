@@ -33,6 +33,11 @@ public class Botones : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void irAEscena(string nombreEscena)
+    {
+        SceneManager.LoadScene(nombreEscena);
+    }
+
     public void salir()
     {
         Application.Quit();
