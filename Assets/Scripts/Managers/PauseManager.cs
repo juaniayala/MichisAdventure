@@ -53,7 +53,7 @@ public class PauseManager : MonoBehaviour
     {
         if (hayRadioEnNivel())
         {
-            sleepMusic.pauseMusic();
+            sleepMusic.pauseMusicDuringPause();
         }
     }
 
@@ -61,7 +61,7 @@ public class PauseManager : MonoBehaviour
     {
         if (hayRadioEnNivel())
         {
-            sleepMusic.playMusic();
+            sleepMusic.unpauseMusicAfterPause();
         }       
     }
 }

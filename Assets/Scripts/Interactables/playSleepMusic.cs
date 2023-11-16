@@ -15,12 +15,6 @@ public class playSleepMusic : Interactable
         cancion = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     override public void interact()
     {       
         playMusic();
@@ -35,10 +29,30 @@ public class playSleepMusic : Interactable
         canInteract = true;
     }
 
+    public void pauseMusicDuringPause()
+    {
+        if (canInteract == false)
+        {
+            Debug.Log("Pausando..." + canInteract + ".");
+            cancion.Pause();
+            musicaFondo.Play();
+        }
+    }
+
     public void playMusic()
     {
         musicaFondo.Pause();
         cancion.Play();
         canInteract = false;
+    }
+
+    public void unpauseMusicAfterPause()
+    {
+        if (canInteract == false)
+        {
+            Debug.Log("Despausando..." + canInteract + ".");
+            musicaFondo.Pause();
+            cancion.Play();
+        }
     }
 }
