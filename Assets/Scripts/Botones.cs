@@ -19,7 +19,7 @@ public class Botones : MonoBehaviour
 
     public void jugar()
     {
-        SceneManager.LoadScene("MovimientoGato");
+        SceneManager.LoadScene("Nivel1");
     }
 
     public void tutorial()
