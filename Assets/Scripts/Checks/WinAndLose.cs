@@ -13,6 +13,8 @@ public class WinAndLose : MonoBehaviour
 
     PerroAI perro;
 
+    public string nivel;
+
     private void Start()
     {
         comidaAgarrada = 0;
@@ -47,7 +49,7 @@ public class WinAndLose : MonoBehaviour
 
     public void perder()
     {
-        SceneManager.LoadScene("Derrota");
+        SceneManager.LoadScene("Derrota" + nivel);
     }
 
     public int getFood()

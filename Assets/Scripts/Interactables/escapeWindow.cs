@@ -7,12 +7,14 @@ public class escapeWindow : Interactable
 {
     public levelManager lManager;
 
+    public string nivel;
+
     public override void interact()
     {
         if (lManager.canEscape())
         {
             canInteract = false;
-            SceneManager.LoadScene("Victoria");
+            SceneManager.LoadScene("Victoria" + nivel);
         }
     }
 
