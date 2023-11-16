@@ -12,11 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Nivel1.unity
     guid: 47b3b9f1aa702554aa01e80e083ea65d
   - enabled: 1
+    path: Assets/Scenes/Nivel2.unity
+    guid: 7089687ca562d884581c031c25b308d7
+  - enabled: 1
+    path: Assets/Scenes/Nivel3.unity
+    guid: f3dbc4283ebd9c749b4ce257c4f576e1
+  - enabled: 1
     path: Assets/Scenes/VictoriaNivel1.unity
     guid: 00e7e3e34cb7e2e4d80967af9b0e3932
-  - enabled: 1
-    path: Assets/Scenes/DerrotaNivel1.unity
-    guid: 0a13b6726a53f7d49a8d2dd2e8901ed3
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 461d62ab315b58940887cd419cc4bf64
@@ -26,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VictoriaNivel2.unity
     guid: f1802ec0296a10d48ba148c1d5ac86e6
+  - enabled: 1
+    path: Assets/Scenes/VictoriaNivel3.unity
+    guid: f5022f41349e63c44875079611271218
   m_configObjects: {}
