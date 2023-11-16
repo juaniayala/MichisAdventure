@@ -11,6 +11,8 @@ public class levelManager : MonoBehaviour
 
     public TMP_Text searchText, escapeText;
 
+    public GameObject ventana;
+
 
     int foodCounter = 0;
 
@@ -36,6 +38,7 @@ public class levelManager : MonoBehaviour
         {
             searchText.gameObject.SetActive(false);
             escapeText.gameObject.SetActive(true);
+            ventana.SetActive(true);
         }
     }
 

@@ -7,8 +7,6 @@ public class WinAndLose : MonoBehaviour
 {
     [SerializeField]int comidaAgarrada = 0;
 
-    public GameObject ventana;
-
     public Timer timer;
 
     PerroAI perro;
@@ -26,8 +24,7 @@ public class WinAndLose : MonoBehaviour
         if (collision.gameObject.CompareTag("Comida"))
         {
             collision.gameObject.SetActive(false);
-            comidaAgarrada++;
-            ventana.SetActive(true);
+            comidaAgarrada++;            
         }
         else if (collision.gameObject.CompareTag("Perro"))
         {
