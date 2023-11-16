@@ -21504,6 +21504,7 @@ MonoBehaviour:
   counterText: {fileID: 468921381}
   searchText: {fileID: 1252326204}
   escapeText: {fileID: 1284422810}
+  ventana: {fileID: 1668702335}
   foodTotal: 2
 --- !u!1 &1685614509
 GameObject:

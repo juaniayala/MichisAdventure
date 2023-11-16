@@ -12504,7 +12504,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1155245752280089728, guid: 022272e186ec6944e8917e2121b897ba, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1155245752280089728, guid: 022272e186ec6944e8917e2121b897ba, type: 3}
       propertyPath: m_TagString
@@ -28739,6 +28739,7 @@ MonoBehaviour:
   counterText: {fileID: 468921381}
   searchText: {fileID: 1252326204}
   escapeText: {fileID: 1284422810}
+  ventana: {fileID: 1668702335}
   foodTotal: 3
 --- !u!1 &1685614509
 GameObject:
